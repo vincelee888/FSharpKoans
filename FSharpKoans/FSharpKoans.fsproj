@@ -1,9 +1,12 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <Name>FSharpKoans</Name>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <Name>FSharpKoans</Name>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FSharpKoans.Core\FSharpKoans.Core.fsproj" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="AboutAsserts.fs" />
     <Compile Include="AboutLet.fs" />
@@ -18,8 +21,8 @@
     <Compile Include="AboutArrays.fs" />
     <Compile Include="AboutLooping.fs" />
     <Compile Include="MoreAboutFunctions.fs" />
-    <Compile Include="AboutDotNetCollections.fs" />
     <Compile Include="AboutTheStockExample.fs" />
+    <Compile Include="AboutDotNetCollections.fs" />
     <Compile Include="AboutRecordTypes.fs" />
     <Compile Include="AboutOptionTypes.fs" />
     <Compile Include="AboutDiscriminatedUnions.fs" />
@@ -27,8 +30,5 @@
     <Compile Include="AboutClasses.fs" />
     <Compile Include="AboutFiltering.fs" />
     <Compile Include="PathToEnlightenment.fs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\FSharpKoans.Core\FSharpKoans.Core.fsproj" />
   </ItemGroup>
 </Project>

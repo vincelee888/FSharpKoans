@@ -60,6 +60,20 @@ module ``about the stock example`` =
 
     [<Koan>]
     let YouGotTheAnswerCorrect() =
-        let result =  __
+        let commaSplit (x:string) = 
+            x.Split([|','|])
+        let getDateAndDiff (x:array<string>) =
+            let date = x.[0]
+            let openValue = System.Double.Parse x.[1]
+            let closeValue = System.Double.Parse x.[4]
+            let diff = abs openValue - closeValue
+            (date, diff)
+
+        let parsedData = 
+            stockData
+                |> Seq.map commaSplit
+                |> Seq.map getDateAndDiff
+                |> Seq.max
+        let result =  "x"
         
         AssertEquality "2012-03-13" result
