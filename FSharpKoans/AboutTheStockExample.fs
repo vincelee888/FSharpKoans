@@ -27,6 +27,7 @@ open FSharpKoans.Core
 //---------------------------------------------------------------
 [<Koan(Sort = 15)>]
 module ``about the stock example`` =
+    open System.Globalization
     
     let stockData =
         [ "Date,Open,High,Low,Close,Volume,Adj Close";
@@ -63,17 +64,21 @@ module ``about the stock example`` =
         let commaSplit (x:string) = 
             x.Split([|','|])
         let getDateAndDiff (x:array<string>) =
+            let parseDouble (x:string) =
+                System.Double.Parse(x, System.Globalization.NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture)
+
             let date = x.[0]
-            let openValue = System.Double.Parse x.[1]
-            let closeValue = System.Double.Parse x.[4]
+            let openValue = parseDouble x.[1]
+            let closeValue = parseDouble x.[4]
             let diff = abs openValue - closeValue
             (date, diff)
 
         let parsedData = 
             stockData
+                |> Seq.skip 1
                 |> Seq.map commaSplit
                 |> Seq.map getDateAndDiff
-                |> Seq.max
-        let result =  "x"
+                |> Seq.sortBy (fun x -> snd x)
+        let result = Seq.head parsedData
         
-        AssertEquality "2012-03-13" result
+        AssertEquality "2012-03-13" (fst result)
